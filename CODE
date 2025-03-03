@@ -1,0 +1,202 @@
+CODE
+
+import os
+import tkinter as tk
+from tkinter import ttk
+import webbrowser
+
+
+# Função para limpar arquivos temporários
+def clean_temp_files():
+    temp_path = os.environ.get('TEMP')
+    if temp_path:
+        try:
+            for root, dirs, files in os.walk(temp_path):
+                for file in files:
+                    try:
+                        os.remove(os.path.join(root, file))
+                    except PermissionError:
+                        pass  # Ignorar arquivos em uso
+                for dir in dirs:
+                    try:
+                        os.rmdir(os.path.join(root, dir))
+                    except OSError:
+                        pass  # Ignorar pastas não vazias
+            print("Arquivos temporários limpos com sucesso!")
+        except Exception as e:
+            print(f"Erro ao limpar arquivos temporários: {e}")
+    else:
+        print("Caminho para arquivos temporários não encontrado.")
+
+# Função para executar comando no CMD que melhora performance de jogos
+import os
+import time
+
+def optimize_games():
+    try:
+        os.system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61")  # Comando fictício para fins de demonstração
+        
+        time.sleep(2)
+        print("Executando comando de otimização...")
+
+        time.sleep(2)
+        print('')
+
+        time.sleep(4)
+        print('..')
+
+        time.sleep(6)
+        print('...')
+
+        time.sleep(10)
+        print('Carregando código...')
+
+        time.sleep(12)
+        
+        # Mensagem de sucesso será exibida apenas após a execução completa
+        print('Código executado com sucesso, pronto para usar!')
+        
+    except Exception as e:
+        print(f"Erro ao executar comando, tente novamente: {e}")
+
+
+
+# Função para redirecionar para o link
+def redirect_to_link():
+    import time
+    time.sleep(2)
+    print("Enviando Para o link...")
+    time.sleep(3)
+    print('Redirecionado!')
+    webbrowser.open("https://www.mediafire.com/folder/upir4jb4ow98m/xK0KLIN's+Otimiza%C3%A7%C3%A3o+ALPHA")
+
+# Função para trocar para a tela de otimizações
+def show_optimization_screen():
+    main_frame.pack_forget()
+    optimization_frame.pack(fill="both", expand=True)
+
+# Função para trocar para a tela de créditos
+def show_credits_screen():
+    main_frame.pack_forget()
+    credits_frame.pack(fill="both", expand=True)
+
+# Função para trocar para a tela de logs de atualização
+def show_update_logs_screen():
+    main_frame.pack_forget()
+    update_logs_frame.pack(fill="both", expand=True)
+
+# Função para voltar para o menu principal
+def go_back():
+    optimization_frame.pack_forget()
+    credits_frame.pack_forget()
+    update_logs_frame.pack_forget()
+    main_frame.pack(fill="both", expand=True)
+
+# Função para animar as cores no estilo arco-íris
+def animate_rainbow(label, colors, index=0):
+    label.config(foreground=colors[index % len(colors)])
+    index += 1
+    root.after(500, animate_rainbow, label, colors, index)  # Troca a cor a cada 500 ms
+
+# Janela principal
+root = tk.Tk()
+root.geometry('600x350')
+root.title('xK0KLIN Optimizations - 1.1')  # Título da janela
+root.configure(background='black')
+
+# Estilo
+style = ttk.Style()
+style.configure('TFrame', background='black')
+style.configure('TLabel', background='black', foreground='cyan')
+
+# Frame principal (Menu)
+main_frame = ttk.Frame(root)
+main_frame.pack(fill="both", expand=True)
+
+# Label do título "TEST" com animação arco-íris
+label = ttk.Label(main_frame, text="PROJETO K0KLIN", font=("Arial", 16))
+label.pack(pady=20)
+
+# Iniciar animação arco-íris no título "TEST"
+animate_rainbow(label, ["red", "orange", "yellow", "green", "blue", "indigo", "violet"])
+
+optimization_button = ttk.Button(main_frame, text="Ir para lista de otimizações", command=show_optimization_screen)
+optimization_button.pack(pady=10)
+
+credits_button = ttk.Button(main_frame, text="Créditos", command=show_credits_screen)
+credits_button.pack(pady=10)
+
+update_logs_button = ttk.Button(main_frame, text="Update Logs", command=show_update_logs_screen)
+update_logs_button.pack(pady=10)
+
+# Label com animação arco-íris no menu principal (30% FEITO POR AI)
+label_rainbow = ttk.Label(main_frame, text="30% FEITO POR AI", font=("Arial", 18, "italic"))
+label_rainbow.place(relx=0.95, rely=0.95, anchor="se")  # Posição no canto inferior direito
+
+# Iniciar animação arco-íris para o texto "30% FEITO POR AI"
+animate_rainbow(label_rainbow, ["red", "orange", "yellow", "green", "blue", "indigo", "violet"])
+
+# Adicionando o texto "All rights reserved" no canto inferior esquerdo
+label_rights = ttk.Label(root, text="All rights reserved", font=("Arial", 14), foreground="red")
+label_rights.place(relx=0.05, rely=0.95, anchor="sw")  # Posição no canto inferior esquerdo
+
+# Frame da tela de otimizações
+optimization_frame = ttk.Frame(root)
+
+label_optimization = ttk.Label(optimization_frame, text="Lista de Otimizações", font=("Arial", 16))
+label_optimization.pack(pady=20)
+
+clean_button = ttk.Button(optimization_frame, text="1. Limpar Arquivos Temporários", command=clean_temp_files)
+clean_button.pack(pady=5)
+
+optimize_button = ttk.Button(optimization_frame, text="2. Executar Comando para Jogos", command=optimize_games)
+optimize_button.pack(pady=5)
+
+link_button = ttk.Button(optimization_frame, text="3. Redirecionar para o Link", command=redirect_to_link)
+link_button.pack(pady=5)
+
+back_button_optimization = ttk.Button(optimization_frame, text="Voltar", command=go_back)
+back_button_optimization.pack(side="bottom", anchor="se", pady=10, padx=10)
+
+# Frame da tela de créditos
+credits_frame = ttk.Frame(root)
+
+label_credits = ttk.Label(credits_frame, text="Criado Por: xK0KLIN", font=("Arial", 16))
+label_credits.pack(pady=10)
+
+testers_label = ttk.Label(credits_frame, text="Testers: assacinodapirocadegelo_43544", font=("Arial", 12))
+testers_label.pack(pady=10)
+
+back_button_credits = ttk.Button(credits_frame, text="Voltar", command=go_back)
+back_button_credits.pack(side="bottom", anchor="se", pady=10, padx=10)
+
+# Frame da tela de logs de atualização
+update_logs_frame = ttk.Frame(root)
+
+label_update_logs = ttk.Label(update_logs_frame, text="Versão 1.1", font=("Arial", 16))
+label_update_logs.pack(pady=10)
+
+logs_label = ttk.Label(update_logs_frame, text="- Renomeado o nome do programa de test que era um bug para, Projeto K0KLIN", font=("Arial", 12))
+logs_label.pack(pady=10)
+
+logs_label = ttk.Label(update_logs_frame, text="- Renomeado o Nome da janela", font=("Arial", 12))
+logs_label.pack(pady=10)
+
+logs_label = ttk.Label(update_logs_frame, text="- Alterado o Metodo de otimização", font=("Arial", 12))
+logs_label.pack(pady=10)
+
+logs_label = ttk.Label(update_logs_frame, text="- Aumentado Resolução da tela para não ter bugs.", font=("Arial", 12))
+logs_label.pack(pady=10)
+
+logs_label = ttk.Label(update_logs_frame, text="- Aumentado o tamanho da fonte de algumas letras para ter a visualização melhor.", font=("Arial", 12))
+logs_label.pack(pady=10)
+
+logs_label = ttk.Label(update_logs_frame, text="- Alterado Algumas fontes para não ser processados.", font=("Arial", 12))
+logs_label.pack(pady=10)
+
+
+back_button_logs = ttk.Button(update_logs_frame, text="VOLTAR", command=go_back)
+back_button_logs.pack(side="bottom", anchor="se", pady=10, padx=10)
+
+# Loop principal
+root.mainloop()
